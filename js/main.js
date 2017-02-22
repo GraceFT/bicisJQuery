@@ -37,9 +37,10 @@ function upperCaseName(_id){
 
 //validating name
 function validateName(){
-    var valName = document.getElementById("name").value;
+    var valName =$("#name").val();
+    console.log(valName);
     if (valName!= ""){
-        upperCaseName("name"); 
+        upperCaseName $("#name"); 
         if(/([0-9]+)/.test(valName)){
         createSpan("name","Solo se aceptan letras");
         }else{
