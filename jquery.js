@@ -23,7 +23,7 @@ function validateForm(){
 
 function createSpan(_id,message){
     if(_id.find('span').length==0){
-        $(_id).append("<span class='animated fadeInLeft'>"+message+"</span>");
+        $(_id).append("<span class='animated flipInX'>"+message+"</span>");
     } 
 }
 function validateName(){
