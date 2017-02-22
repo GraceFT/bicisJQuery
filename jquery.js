@@ -1,13 +1,24 @@
+
 $(function(){
     $("#name").keyup(validaName);
     $("#lastname").keyup(validaLastName);
     $("#input-email").keyup(validaEmail);
     $("#input-password").keyup(validaPassword);
     $("#options").click(validaSelector);
-    
 });
+
 function validateForm(){
-    if (validaName()==true && validaLastName()==true && validaEmail()==true && validaPassword()==true && validaSelector()==true){}
+    validaName();
+    validaLastName();
+    validaEmail();
+    validaPassword();
+    validaSelector();
+    
+    if (validaName()==true && validaLastName()==true && validaEmail()==true && validaPassword()==true && validaSelector()==true){
+        
+    }else{
+        
+    }
 }
 
 function createSpan(_id,message){
@@ -22,72 +33,67 @@ var validaName = function validateName(){
     var isName= true;
     if(valName.length > 0 && valName.match(/^[a-zA-Z\s]*$/)){
         $("#name-container span").remove();
-        return isName=false;
+        isName=false;
     }else{
         createSpan(nameCont,"Coloca tu nombre");
-        return isName=true;
+        isName=true;
     }
+    return isName;
 }
 var validaLastName= function validateLastName(){
     var valLastName=$("#lastname").val();
     var lastnameCont= $("#lastname-container");
-    var isLastName= true;
+    var isLastName= false;
     if(valLastName.length > 0 && valLastName.match(/^[a-zA-Z\s]*$/)){
         $("#lastname-container span").remove();
-        return isLastName=false;
+         isLastName=true;
     }else{
         createSpan(lastnameCont,"Coloca tu apellido")
-        return isLastName=true; 
+        isLastName=true; 
     }
+   return isLastName; 
 }
 var validaEmail = function validateEmail(){
     var valiMail = $("#input-email");
     var emailCont= $("#email-container");
-    var isEmail= true;
+    var isEmail= false;
     if(valiMail.val().length>0 && valiMail.val().match(/^([a-z]+[a-z1-9._-]*)@{1}([a-z1-9\.]{2,})\.([a-z]{2,3})$/)){
         $("#email-container span").remove();
-        return isEmail=false; 
+        isEmail=true; 
     }else{
         createSpan(emailCont,"Completa con tu email");
-        return isEmail=true;}
+        isEmail=false;
+    }
+    return isEmail;
 }
  var validaPassword= function validatePassword(){
     var valPassword = $("#input-password").val();
     var passCont= $("#password-container");
+    var isPassword= false;
     if(valPassword=="098754"||valPassword=="password"||valPassword=="123456"||valPassword.length<=6){
             createSpan(passCont,"Ingrese correctamente su contraseña");
+        isPassword= true;
         }else{
-            $("#password-container span").remove();}   
+            $("#password-container span").remove();
+            isPassword= false;
+        }
+    return isPassword;
 }
 //validating options about bycicles
 var validaSelector= function validateSelector(){
     var indice = $("#options");
     var selectCont= $("#select-container");
+    var isSelector= false;
     if(indice.val() == 0 ){
        createSpan(selectCont,"Selecciona una bicicleta");
+        isSelector=false;
     }else{
         $("#select-container span").remove();
-    }  
+        isSelector=true;
+    }
+    return isSelector;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/***************************************************JUST DOING***************************************************/
 /*function upperCaseName(_id){
     var element = $(_id);
     var value = element.val();
@@ -95,49 +101,7 @@ var validaSelector= function validateSelector(){
     var u = n.toUpperCase();
     var r = value.slice(1);
     var s = u.concat(r);
-}*/
-
-
-
-
-
-    /*if(name.val().length != 0){
-    upperCaseName("#name");
-    console.log(upperCaseName("#name"));
-        if(pattern.test(name)){
-            name.parent().append("<span>Solo se acepan letras</span>");
-            console.log(span);
-            return false;
-        }else{
-            return true;
-        }
-    }/*else{
-            span.hide();
-            return true;}
-    }else{
-        span.show();
-        return false;}*/
-
-
-
-    
-    
-    
-    /*if (valName!= ""){
-        upperCaseName $("#name"); 
-        if(/([0-9]+)/.test(valName)){
-        createSpan("name","Solo se aceptan letras");
-        }else{
-        removeSpan("name");}    
-    }else{
-        createSpan("name","Debes ingresar tu nombre");}*/
-    
-    
-
-
-/*$(document).ready(function(){
-    validateForm();
-});
+}
 
 function validateForm(){
     console.log("hola");
