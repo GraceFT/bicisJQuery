@@ -1,46 +1,46 @@
 
 $(function(){
-    $("#name").keyup(validaName);
-    $("#lastname").keyup(validaLastName);
-    $("#input-email").keyup(validaEmail);
-    $("#input-password").keyup(validaPassword);
-    $("#options").click(validaSelector);
+    $("#name").keyup(validateName);
+    $("#lastname").keyup(validateLastName);
+    $("#input-email").keyup(validateEmail);
+    $("#input-password").keyup(validatePassword);
+    $("#options").click(validateSelector);
 });
 
 function validateForm(){
-    validaName();
-    validaLastName();
-    validaEmail();
-    validaPassword();
-    validaSelector();
+    validateName();
+    validateLastName();
+    validateEmail();
+    validatePassword();
+    validateSelector();
     
-    if (validaName()==true && validaLastName()==true && validaEmail()==true && validaPassword()==true && validaSelector()==true){
-        salida.innerHTML="<span style='color:green;'>Formulario enviado</span>"   
+    if (validateName() && validateLastName() && validateEmail() && validatePassword() && validateSelector()){
+        salida.innerHTML="<p style='color:green;'>Formulario enviado</p>"   
     }else{
-        salida.innerHTML="";
+        salida.innerHTML="<p style='color:red;'>Completa tus datos</p>";
     }
 }
 
 function createSpan(_id,message){
     if(_id.find('span').length==0){
-        $(_id).append("<span>"+message+"</span>");
+        $(_id).append("<span class='animated fadeInLeft'>"+message+"</span>");
     } 
 }
-var validaName = function validateName(){
+function validateName(){
     //console.log("creo que no");
     var valName=$("#name").val();
     var nameCont= $("#name-container");
-    var isName= true;
+    var isName= false;
     if(valName.length > 0 && valName.match(/^[a-zA-Z\s]*$/)){
         $("#name-container span").remove();
-        isName=false;
+        isName=true;
     }else{
         createSpan(nameCont,"Coloca tu nombre");
-        isName=true;
+        isName=false;
     }
     return isName;
 }
-var validaLastName= function validateLastName(){
+function validateLastName(){
     var valLastName=$("#lastname").val();
     var lastnameCont= $("#lastname-container");
     var isLastName= false;
@@ -49,11 +49,11 @@ var validaLastName= function validateLastName(){
          isLastName=true;
     }else{
         createSpan(lastnameCont,"Coloca tu apellido")
-        isLastName=true; 
+        isLastName=false; 
     }
    return isLastName; 
 }
-var validaEmail = function validateEmail(){
+function validateEmail(){
     var valiMail = $("#input-email");
     var emailCont= $("#email-container");
     var isEmail= false;
@@ -66,21 +66,21 @@ var validaEmail = function validateEmail(){
     }
     return isEmail;
 }
- var validaPassword= function validatePassword(){
+function validatePassword(){
     var valPassword = $("#input-password").val();
     var passCont= $("#password-container");
     var isPassword= false;
     if(valPassword=="098754"||valPassword=="password"||valPassword=="123456"||valPassword.length<=6){
             createSpan(passCont,"Ingrese correctamente su contraseña");
-        isPassword= true;
+        isPassword= false;
         }else{
             $("#password-container span").remove();
-            isPassword= false;
+            isPassword= true;
         }
     return isPassword;
 }
 //validating options about bycicles
-var validaSelector= function validateSelector(){
+function validateSelector(){
     var indice = $("#options");
     var selectCont= $("#select-container");
     var isSelector= false;
