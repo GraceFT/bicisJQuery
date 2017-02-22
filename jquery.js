@@ -7,9 +7,7 @@ $(function(){
     
 });
 function validateForm(){
-    if (validaName()==true && validaLastName()==true && validaEmail()==true && validaPassword()==true && validaSelector()==true){
-        
-    }
+    if (validaName()==true && validaLastName()==true && validaEmail()==true && validaPassword()==true && validaSelector()==true){}
 }
 
 function createSpan(_id,message){
@@ -17,7 +15,6 @@ function createSpan(_id,message){
         $(_id).append("<span>"+message+"</span>");
     } 
 }
-
 var validaName = function validateName(){
     //console.log("creo que no");
     var valName=$("#name").val();
@@ -31,7 +28,6 @@ var validaName = function validateName(){
         return isName=true;
     }
 }
-
 var validaLastName= function validateLastName(){
     var valLastName=$("#lastname").val();
     var lastnameCont= $("#lastname-container");
@@ -67,10 +63,10 @@ var validaEmail = function validateEmail(){
 var validaSelector= function validateSelector(){
     var indice = $("#options");
     var selectCont= $("#select-container");
-    if(indice.val() != null || indice.val() == 0 ){
+    if(indice.val() == 0 ){
        createSpan(selectCont,"Selecciona una bicicleta");
     }else{
-        $("#options span").remove();
+        $("#select-container span").remove();
     }  
 }
 
