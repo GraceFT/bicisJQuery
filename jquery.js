@@ -15,9 +15,9 @@ function validateForm(){
     validaSelector();
     
     if (validaName()==true && validaLastName()==true && validaEmail()==true && validaPassword()==true && validaSelector()==true){
-        
+        salida.innerHTML="<span style='color:green;'>Formulario enviado</span>"   
     }else{
-        
+        salida.innerHTML="";
     }
 }
 
