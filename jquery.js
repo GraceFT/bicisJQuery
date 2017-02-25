@@ -1,12 +1,12 @@
-
-$(function(){
+$(document).ready(init);
+function init(){
     $("#name").keyup(validateName);
     $("#lastname").keyup(validateLastName);
     $("#input-email").keyup(validateEmail);
     $("#input-password").keyup(validatePassword);
     $("#options").click(validateSelector);
-});
-
+}
+///////////////////////////////////////////VALIDATE FORM////////////////////////////////////////////
 function validateForm(){
     validateName();
     validateLastName();
@@ -26,12 +26,19 @@ function createSpan(_id,message){
         $(_id).append("<span class='animated flipInX'>"+message+"</span>");
     } 
 }
+///////////////////////////////////////////UPPERCASE NAME////////////////////////////////////////////
+function CapitaliseFirstLetter(_id) {
+        var txt = _id.val().toLowerCase();
+        _id.val(txt.replace(/^(.)|\s(.)/g, function($upperCase) {
+        return $upperCase.toUpperCase(); }));
+        }
+///////////////////////////////////////////VALIDATE NAME////////////////////////////////////////////
 function validateName(){
-    //console.log("creo que no");
-    var valName=$("#name").val();
+    var valName=$("#name");
     var nameCont= $("#name-container");
     var isName= false;
-    if(valName.length > 0 && valName.match(/^[a-zA-Z\s]*$/)){
+    if(valName.val().length > 0 && valName.val().match(/^[a-zA-Z\s]*$/)){
+        CapitaliseFirstLetter(valName);
         $("#name-container span").remove();
         isName=true;
     }else{
@@ -40,11 +47,13 @@ function validateName(){
     }
     return isName;
 }
+///////////////////////////////////////////VALIDATE LASTNAME////////////////////////////////////////////
 function validateLastName(){
-    var valLastName=$("#lastname").val();
+    var valLastName=$("#lastname");
     var lastnameCont= $("#lastname-container");
     var isLastName= false;
-    if(valLastName.length > 0 && valLastName.match(/^[a-zA-Z\s]*$/)){
+    if(valLastName.val().length > 0 && valLastName.val().match(/^[a-zA-Z\s]*$/)){
+        CapitaliseFirstLetter(valLastName);
         $("#lastname-container span").remove();
          isLastName=true;
     }else{
@@ -53,6 +62,7 @@ function validateLastName(){
     }
    return isLastName; 
 }
+///////////////////////////////////////////VALIDATE EMAIL////////////////////////////////////////////
 function validateEmail(){
     var valiMail = $("#input-email");
     var emailCont= $("#email-container");
@@ -66,6 +76,7 @@ function validateEmail(){
     }
     return isEmail;
 }
+///////////////////////////////////////////VALIDATE PASSWORD////////////////////////////////////////////
 function validatePassword(){
     var valPassword = $("#input-password").val();
     var passCont= $("#password-container");
@@ -79,7 +90,7 @@ function validatePassword(){
         }
     return isPassword;
 }
-//validating options about bycicles
+///////////////////////////////////////////validating options about bycicles//////////////////////////////////////////////
 function validateSelector(){
     var indice = $("#options");
     var selectCont= $("#select-container");
